@@ -14,7 +14,8 @@ public class TelaBancoInter {
 		Conta conta;
 		conta = null;
 		do {
-			System.out.print("Informe\n\t0 - Sair\n\t1 - Criar Conta\n\t2 - Exibir Saldo\n=> ");
+			System.out.print(
+					"Informe\n\t0 - Sair\n\t1 - Criar Conta\n\t2 - Exibir Saldo\n\t3 - Realizar Saque\n\t4 - Realizar Transferência\n\t5 - Realizar Deposito\n=> ");
 			opcao = teclado.nextInt();
 
 			if (opcao == 2 && conta == null) {
