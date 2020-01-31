@@ -15,6 +15,9 @@ public class TelaBancoInter {
 			System.out.print("Informe\n\t0 - Sair\n\t1 - Criar Conta\n\t2 - Exibir Saldo\n=> ");
 			opcao = teclado.nextInt();
 			switch (opcao) {
+			case 0:
+				System.out.println("\n<----------------->\n");
+				break;
 			case 1:
 				c = new Conta();
 				System.out.print("Informe o numero da conta: ");
@@ -23,6 +26,8 @@ public class TelaBancoInter {
 				c.agencia = teclado.nextInt();
 				System.out.print("Informe o saldo da conta: ");
 				c.saldo = teclado.nextDouble();
+				System.out.println("Conta criada com sucesso.");
+				System.out.println("\n<----------------->\n");
 				break;
 			case 2:
 				if (c == null) {
@@ -30,9 +35,11 @@ public class TelaBancoInter {
 				} else {
 					System.out.println("Saldo atual: " + c.saldo);
 				}
+				System.out.println("\n<----------------->\n");
 				break;
 			default:
 				System.out.println("Código inválido.");
+				System.out.println("\n<----------------->\n");
 				break;
 			}
 		} while (!opcao.equals(0));
