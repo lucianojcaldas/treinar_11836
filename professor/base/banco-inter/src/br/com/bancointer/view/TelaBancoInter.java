@@ -18,7 +18,7 @@ public class TelaBancoInter {
 					"Informe\n\t0 - Sair\n\t1 - Criar Conta\n\t2 - Exibir Saldo\n\t3 - Realizar Saque\n\t4 - Realizar Transferência\n\t5 - Realizar Deposito\n=> ");
 			opcao = teclado.nextInt();
 
-			if (opcao == 2 && conta == null) {
+			if (opcao != 1 && conta == null) {
 				System.out
 						.println("Voce não possui conta. Deseja criar uma conta agora? \n Informe S (Sim) ou N (não)");
 				String criaConta = teclado.next();
@@ -68,6 +68,12 @@ public class TelaBancoInter {
 				} else {
 					System.out.println("O Saldo da conta é: " + conta.saldo + "\n------------------------\n");
 				}
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
 				break;
 			default:
 				System.out.println("Favor digitar um numero valido\n------------------------\n");
