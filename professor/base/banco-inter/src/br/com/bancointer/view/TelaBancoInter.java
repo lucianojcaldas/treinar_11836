@@ -25,9 +25,17 @@ public class TelaBancoInter {
 				c.saldo = teclado.nextDouble();
 				break;
 			case 2:
-				System.out.println("Saldo atual: " + c.saldo);
+				if (c != null) {
+					System.out.println("Saldo atual: " + c.saldo);
+				} else {
+					System.out.println("Crie a conta primeiro.");
+				}
+			case 3:
+			// TODO - implementar funcionalidade depositar
+				break;
 			default:
 				break;
+
 			}
 		} while (!opcao.equals(0));
 	}
