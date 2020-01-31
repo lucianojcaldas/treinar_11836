@@ -25,7 +25,12 @@ public class TelaBancoInter {
 				c.saldo = teclado.nextDouble();
 				break;
 			case 2:
-				System.out.println("Saldo atual: " + c.saldo);
+				if (c == null) {
+					System.out.println("Por favor crie a conta antes.");
+				} else {
+					System.out.println("Saldo atual: " + c.saldo);
+				}
+				break;
 			default:
 				System.out.println("Código inválido.");
 				break;
