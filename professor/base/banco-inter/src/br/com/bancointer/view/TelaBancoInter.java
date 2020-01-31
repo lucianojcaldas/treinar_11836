@@ -12,7 +12,7 @@ public class TelaBancoInter {
 		Integer opcao;
 		Conta c = null;
 		do {
-			System.out.print("Informe\n\t0 - Sair\n\t1 - Criar Conta\n\t2 - Exibir Saldo\n\t3 - Depositar\n=> ");
+			System.out.print("Informe:\n\t0 - Sair\n\t1 - Criar Conta\n\t2 - Exibir Saldo\n\t3 - Depositar\n=> ");
 			opcao = teclado.nextInt();
 			switch (opcao) {
 			case 0:
@@ -20,9 +20,9 @@ public class TelaBancoInter {
 				break;
 			case 1:
 				c = new Conta();
-				System.out.print("Informe o numero da conta: ");
+				System.out.print("Informe o número da conta: ");
 				c.numero = teclado.nextInt();
-				System.out.print("Informe o numero da agencia: ");
+				System.out.print("Informe o número da agencia: ");
 				c.agencia = teclado.nextInt();
 				System.out.print("Informe o Depósito inicial da conta: ");
 				c.saldo = teclado.nextDouble();
