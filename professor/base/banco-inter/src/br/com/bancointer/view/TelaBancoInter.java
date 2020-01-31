@@ -17,6 +17,20 @@ public class TelaBancoInter {
 			System.out.print("Informe\n\t0 - Sair\n\t1 - Criar Conta\n\t2 - Exibir Saldo\n=> ");
 			opcao = teclado.nextInt();
 
+			if (opcao == 2 && conta == null) {
+				System.out
+						.println("Voce não possui conta. Deseja criar uma conta agora? \n Informe S (Sim) ou N (não)");
+				String criaConta = teclado.next();
+
+				if (criaConta.equals("S") || criaConta.equals("Sim") || criaConta.equals("s")
+						|| criaConta.equals("sim")) {
+					opcao = 1;
+				} else {
+					System.out.println("Operação Cancelada.");
+					opcao = 0;
+				}
+			}
+
 			switch (opcao) {
 			case 1:
 
