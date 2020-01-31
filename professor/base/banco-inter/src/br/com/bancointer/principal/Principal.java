@@ -1,9 +1,12 @@
 package br.com.bancointer.principal;
 
+import br.com.bancointer.view.TelaBancoInter;
+
 public class Principal {
 
 	public static void main(String[] args) {
-		System.out.println("Banco Inter");
+		TelaBancoInter banco = new TelaBancoInter();
+		banco.iniciar();
 	}
 
 }
