@@ -5,60 +5,13 @@ import java.util.Scanner;
 import br.com.bancointer.model.Cliente;
 import br.com.bancointer.model.core.Conta;
 
-public class TelaBancoInter {
+public class BancoInterServices {
+	public Scanner teclado;
 
-	BancoInterServices data = new BancoInterServices(new Scanner(System.in));
-
-	public String recuperarMenu() {
-		return "Informe\n\t0 - Sair" 
-	                + "\n\t1 - Criar Conta" 
-				    + "\n\t2 - Exibir Saldo" 
-	                + "\n\t3 - Realizar Deposito"
-				    + "\n\t4 - Realizar Saque" 
-	                + "\n\t5 - Realizar Transferencia" 
-				    + "\n=> ";
+	public BancoInterServices(Scanner teclado) {
+		this.teclado = teclado;
 	}
-
-	public void iniciar() {
-		Integer opcao;
-		Conta conta;
-		conta = null;
-		do {
-			System.out.print(recuperarMenu());
-			opcao = data.teclado.nextInt();
-			opcao = validaExistenciaConta(opcao, conta);
-			switch (opcao) {
-			case 0:
-				break;
-			case 1:
-				Cliente cliente = criarCliente();
-				conta = criarConta(cliente);
-				
-				//imprime informações da conta criada
-				String nome = conta.cliente.nome;
-				int idade = conta.cliente.idade;
-				System.out.println("Cliente: " + nome + "\n Idade: " + idade + "\n CC: " + conta.numero + "\n AG: "
-						+ conta.agencia + "\n Saldo: " + conta.saldo + "\n------------------------\n");
-				break;
-			case 2:
-				exibirSaldo(conta);
-				break;
-			case 3:
-				depositar(conta);
-				break;
-			case 4:
-				sacar(conta);
-				break;
-			case 5:
-				transferir(conta);
-				break;
-			default:
-				System.out.println("Favor digitar um numero valido\n------------------------\n");
-				break;
-			}
-		} while (!opcao.equals(0));
-	}
-
+	
 	private Integer validaExistenciaConta(Integer opcao, Conta conta) {
 		if (opcao != 1 && conta == null) {
 			System.out.println("Voce não possui conta. Deseja criar uma conta agora? \n Informe S (Sim) ou N (não)");
@@ -132,5 +85,6 @@ public class TelaBancoInter {
 		Double valorDeposito = data.teclado.nextDouble();
 		conta.depositar(valorDeposito);
 	}
+
 
 }
