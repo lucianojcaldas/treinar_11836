@@ -44,9 +44,14 @@ public class TelaBancoInter {
 						+ conta.agencia + "\n Saldo: " + conta.saldo + "\n------------------------\n");
 				break;
 			case 2:
-				System.out.println("O Saldo da conta é: " + conta.saldo + "\n------------------------\n");
+				if (conta == null) {
+					System.out.println("Favor criar a conta primeiro. \n------------------------\n");
+				} else {
+					System.out.println("O Saldo da conta é: " + conta.saldo + "\n------------------------\n");
+				}
 				break;
 			default:
+				System.out.println("Favor digitar um numero valido\n------------------------\n");
 				break;
 			}
 		} while (!opcao.equals(0));
