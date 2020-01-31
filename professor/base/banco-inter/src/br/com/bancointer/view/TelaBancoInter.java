@@ -27,6 +27,7 @@ public class TelaBancoInter {
 			case 2:
 				System.out.println("Saldo atual: " + c.saldo);
 			default:
+				System.out.println("Opcao Invalido");
 				break;
 			}
 		} while (!opcao.equals(0));
