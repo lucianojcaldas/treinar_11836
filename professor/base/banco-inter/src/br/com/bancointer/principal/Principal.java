@@ -7,7 +7,8 @@ public class Principal {
 	public static void main(String[] args) {
 		TelaBancoInter banco = new TelaBancoInter();
 		banco.iniciar();
-		System.out.println("Muito Obrigado por utilizar o Banco Inter. Volte Sempre.");
+		System.out.println(
+				"------------------------------------------------\n    Muito Obrigado por utilizar o Banco Inter\n------------------------------------------------");
 	}
 
 }

@@ -32,8 +32,11 @@ public class TelaBancoInter {
 			}
 
 			switch (opcao) {
+			case 0:
+				break;
 			case 1:
-
+				System.out.println(
+						"------------------------------------------------\n              Cadastrando Cliente\n------------------------------------------------");
 				// Criando o Cliente
 				Cliente cliente = new Cliente();
 				System.out.print("Digite o nome do Cliente: ");
@@ -43,6 +46,8 @@ public class TelaBancoInter {
 				int idadeCliente = teclado.nextInt();
 				cliente.idade = idadeCliente;
 
+				System.out.println(
+						"------------------------------------------------\n                 Crindo Conta\n------------------------------------------------");
 				// Criando a Conta
 				conta = new Conta();
 				System.out.print("Informe o numero da conta: ");
@@ -53,7 +58,6 @@ public class TelaBancoInter {
 				conta.saldo = 0d;
 				String nome = conta.cliente.nome;
 				int idade = conta.cliente.idade;
-
 				System.out.println("Cliente: " + nome + "\n Idade: " + idade + "\n CC: " + conta.numero + "\n AG: "
 						+ conta.agencia + "\n Saldo: " + conta.saldo + "\n------------------------\n");
 				break;
