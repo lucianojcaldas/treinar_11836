@@ -37,8 +37,12 @@ public class TelaBancoInter {
 				//imprime informações da conta criada
 				String nome = conta.cliente.nome;
 				int idade = conta.cliente.idade;
-				System.out.println("Cliente: " + nome + "\n Idade: " + idade + "\n CC: " + conta.numero + "\n AG: "
-						+ conta.agencia + "\n Saldo: " + conta.saldo + "\n------------------------\n");
+				System.out.println("Cliente: " + nome 
+						        + "\n Idade: " + idade 
+						        + "\n CC: "    + conta.numero 
+						        + "\n AG: "    + conta.agencia 
+						        + "\n Saldo: " + conta.saldo 
+						        + "\n------------------------\n");
 				break;
 			case 2:
 				exibirSaldo(conta);
@@ -53,7 +57,8 @@ public class TelaBancoInter {
 				transferir(conta);
 				break;
 			default:
-				System.out.println("Favor digitar um numero valido\n------------------------\n");
+				System.out.println("Favor digitar um numero valid"
+						       + "\n-----------------------------\n");
 				break;
 			}
 		} while (!opcao.equals(0));
@@ -76,8 +81,8 @@ public class TelaBancoInter {
 
 	private Cliente criarCliente() {
 		System.out.println("------------------------------------------------" 
-	            + "\n              Cadastrando Cliente"
-				+ "\n------------------------------------------------");
+	                   + "\n              Cadastrando Cliente"
+				       + "\n------------------------------------------------");
 		// Criando o Cliente
 		Cliente cliente = new Cliente();
 		System.out.print("Digite o nome do Cliente: ");
@@ -91,8 +96,8 @@ public class TelaBancoInter {
 
 	private Conta criarConta(Cliente cliente) {
 		System.out.println("------------------------------------------------" 
-	            + "\n                 Crindo Conta"
-				+ "\n------------------------------------------------");
+	                   + "\n                 Crindo Conta"
+				       + "\n------------------------------------------------");
 		Conta conta;
 		// Criando a Conta
 		conta = new Conta();
