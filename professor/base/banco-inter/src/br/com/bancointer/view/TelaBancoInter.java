@@ -21,8 +21,7 @@ public class TelaBancoInter {
 
 	public void iniciar() {
 		Integer opcao;
-		Conta conta;
-		conta = null;
+		Conta conta = null;
 		do {
 			System.out.print(recuperarMenu());
 			opcao = teclado.nextInt();
@@ -37,7 +36,7 @@ public class TelaBancoInter {
 				//imprime informações da conta criada
 				String nome = conta.cliente.nome;
 				int idade = conta.cliente.idade;
-				System.out.println("Cliente: " + nome 
+				System.out.print("Cliente: "   + nome 
 						        + "\n Idade: " + idade 
 						        + "\n CC: "    + conta.numero 
 						        + "\n AG: "    + conta.agencia 
@@ -57,7 +56,7 @@ public class TelaBancoInter {
 				transferir(conta);
 				break;
 			default:
-				System.out.println("Favor digitar um numero valid"
+				System.out.print("Favor digitar um numero valido"
 						       + "\n-----------------------------\n");
 				break;
 			}
@@ -66,13 +65,13 @@ public class TelaBancoInter {
 
 	private Integer validaExistenciaConta(Integer opcao, Conta conta) {
 		if (opcao != 1 && conta == null) {
-			System.out.println("Voce não possui conta. Deseja criar uma conta agora? \n Informe S (Sim) ou N (não)");
+			System.out.print("Voce não possui conta. Deseja criar uma conta agora? \n Informe S (Sim) ou N (não)");
 			String criaConta = teclado.next();
 
 			if (criaConta.equals("S") || criaConta.equals("Sim") || criaConta.equals("s") || criaConta.equals("sim")) {
 				opcao = 1;
 			} else {
-				System.out.println("Operação Cancelada.");
+				System.out.print("Operação Cancelada.");
 				opcao = 0;
 			}
 		}
@@ -80,7 +79,7 @@ public class TelaBancoInter {
 	}
 
 	private Cliente criarCliente() {
-		System.out.println("------------------------------------------------" 
+		System.out.print("------------------------------------------------" 
 	                   + "\n              Cadastrando Cliente"
 				       + "\n------------------------------------------------");
 		// Criando o Cliente
@@ -106,7 +105,7 @@ public class TelaBancoInter {
 		conta.cliente = cliente;
 		System.out.print("Informe o numero da agencia: ");
 		conta.agencia = teclado.nextInt();
-		conta.saldo = 0d;
+		conta.recuperarSaldo();
 		return conta;
 	}
 
@@ -114,7 +113,7 @@ public class TelaBancoInter {
 		if (conta == null) {
 			System.out.println("Favor criar a conta primeiro. \n------------------------\n");
 		} else {
-			System.out.println("O Saldo da conta é: " + conta.saldo + "\n------------------------\n");
+			System.out.println("O Saldo da conta é: " + conta.recuperarSaldo() + "\n------------------------\n");
 		}
 	}
 
