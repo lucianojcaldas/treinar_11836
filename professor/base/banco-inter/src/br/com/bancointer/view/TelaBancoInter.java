@@ -26,7 +26,6 @@ public class TelaBancoInter {
 				break;
 			case 3:
 				fazerDeposito(c);
-
 				break;
 			default:
 				System.out.println("Código inválido.");
@@ -42,18 +41,18 @@ public class TelaBancoInter {
 
 	private Conta criarConta() {
 
-		Conta c = new Conta();
+		Conta conta = new Conta();
 		System.out.print("Informe o número da conta: ");
-		c.numero = teclado.nextInt();
+		conta.numero = teclado.nextInt();
 		System.out.print("Informe o número da agencia: ");
-		c.agencia = teclado.nextInt();
+		conta.agencia = teclado.nextInt();
 		System.out.print("Informe o Depósito inicial da conta: ");
-		c.saldo = teclado.nextDouble();
+		conta.saldo = teclado.nextDouble();
 		System.out.println("Informe o limite de Crédito Inicial: ");
-		c.limiteCredito = teclado.nextDouble();
+		conta.limiteCredito = teclado.nextDouble();
 		System.out.println("Conta criada com sucesso.");
 		System.out.println("\n<----------------->\n");
-		return c;
+		return conta;
 	}
 
 	private void exibirSaldo(Conta conta) {
