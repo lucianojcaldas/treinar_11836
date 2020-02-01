@@ -8,36 +8,61 @@ public class TelaBancoInter {
 
 	Scanner teclado = new Scanner(System.in);
 
+	public String recuperarMenu() {
+		return "Informe\n\t"
+				+ "0 - Sair\n\t"
+				+ "1 - Criar Conta\n\t"
+				+ "2 - Exibir Saldo\n\t"
+				+ "3 - Depositar\n\t"
+				+ "\n=> ";
+	}
+
 	public void iniciar() {
 		Integer opcao;
 		Conta c = null;
 		do {
-			System.out.print("Informe\n\t0 - Sair\n\t1 - Criar Conta\n\t2 - Exibir Saldo\n=> ");
+			System.out.print(recuperarMenu());
 			opcao = teclado.nextInt();
 			switch (opcao) {
 			case 1:
-				c = new Conta();
-				System.out.print("Informe o numero da conta: ");
-				c.numero = teclado.nextInt();
-				System.out.print("Informe o numero da agencia: ");
-				c.agencia = teclado.nextInt();
-				System.out.print("Informe o saldo da conta: ");
-				c.saldo = teclado.nextDouble();
+				c = criarConta();
 				break;
 			case 2:
-				if (c != null) {
-					System.out.println("Saldo atual: " + c.saldo);
-				} else {
-					System.out.println("Crie a conta primeiro.");
-				}
+				exibirSaldo(c);
+				break;
 			case 3:
-			// TODO - implementar funcionalidade depositar
+				depositar(c);
 				break;
 			default:
 				break;
 
 			}
 		} while (!opcao.equals(0));
+	}
+
+	private Conta criarConta() {
+		Conta batata = new Conta();
+		System.out.print("Informe o numero da conta: ");
+		batata.numero = teclado.nextInt();
+		System.out.print("Informe o numero da agencia: ");
+		batata.agencia = teclado.nextInt();
+		System.out.print("Informe o saldo da conta: ");
+		batata.depositar(teclado.nextDouble());
+		return batata;
+	}
+
+	private void exibirSaldo(Conta conta) {
+		if (conta != null) {
+			System.out.println("Saldo atual: " + conta.recuperarSaldo());
+		} else {
+			System.out.println("Crie a conta primeiro.");
+		}
+	}
+
+	private void depositar(Conta conta) {
+		System.out.print("Informe o valor a ser depositado: ");
+		Double valor = teclado.nextDouble();
+		conta.depositar(valor);
 	}
 
 }
