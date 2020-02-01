@@ -8,7 +8,9 @@ public class Principal {
 		TelaBancoInter banco = new TelaBancoInter();
 		banco.iniciar();
 		System.out.println(
-				"------------------------------------------------\n    Muito Obrigado por utilizar o Banco Inter\n------------------------------------------------");
+				"------------------------------------------------\n    "
+				+ "Muito Obrigado por utilizar o Banco Inter"
+			+ "\n------------------------------------------------");
 	}
 
 }
