@@ -7,7 +7,7 @@ import br.com.bancointer.model.core.Conta;
 
 public class TelaBancoInter {
 
-	BancoInterServices data = new BancoInterServices(new Scanner(System.in));
+	Scanner teclado = new Scanner(System.in);
 
 	public String recuperarMenu() {
 		return "Informe\n\t0 - Sair" 
@@ -25,7 +25,7 @@ public class TelaBancoInter {
 		conta = null;
 		do {
 			System.out.print(recuperarMenu());
-			opcao = data.teclado.nextInt();
+			opcao = teclado.nextInt();
 			opcao = validaExistenciaConta(opcao, conta);
 			switch (opcao) {
 			case 0:
@@ -62,7 +62,7 @@ public class TelaBancoInter {
 	private Integer validaExistenciaConta(Integer opcao, Conta conta) {
 		if (opcao != 1 && conta == null) {
 			System.out.println("Voce não possui conta. Deseja criar uma conta agora? \n Informe S (Sim) ou N (não)");
-			String criaConta = data.teclado.next();
+			String criaConta = teclado.next();
 
 			if (criaConta.equals("S") || criaConta.equals("Sim") || criaConta.equals("s") || criaConta.equals("sim")) {
 				opcao = 1;
@@ -81,10 +81,10 @@ public class TelaBancoInter {
 		// Criando o Cliente
 		Cliente cliente = new Cliente();
 		System.out.print("Digite o nome do Cliente: ");
-		String nomeCliente = data.teclado.next();
+		String nomeCliente = teclado.next();
 		cliente.nome = nomeCliente;
 		System.out.print("Digite a idade: ");
-		int idadeCliente = data.teclado.nextInt();
+		int idadeCliente = teclado.nextInt();
 		cliente.idade = idadeCliente;
 		return cliente;
 	}
@@ -97,10 +97,10 @@ public class TelaBancoInter {
 		// Criando a Conta
 		conta = new Conta();
 		System.out.print("Informe o numero da conta: ");
-		conta.numero = data.teclado.nextInt();
+		conta.numero = teclado.nextInt();
 		conta.cliente = cliente;
 		System.out.print("Informe o numero da agencia: ");
-		conta.agencia = data.teclado.nextInt();
+		conta.agencia = teclado.nextInt();
 		conta.saldo = 0d;
 		return conta;
 	}
@@ -115,21 +115,21 @@ public class TelaBancoInter {
 
 	private void transferir(Conta conta) {
 		System.out.println("Digite o Valor que deseja transferir: ");
-		Double valorTransferencia = data.teclado.nextDouble();
+		Double valorTransferencia = teclado.nextDouble();
 		System.out.println("digite a Conta de Destino: ");
-		Integer contaDestino = data.teclado.nextInt();
+		Integer contaDestino = teclado.nextInt();
 		conta.transferir(valorTransferencia, contaDestino);
 	}
 
 	private void sacar(Conta conta) {
 		System.out.println("Digite o Valor que deseja sacar: ");
-		Double valorSaque = data.teclado.nextDouble();
+		Double valorSaque = teclado.nextDouble();
 		conta.saque(valorSaque);
 	}
 
 	private void depositar(Conta conta) {
 		System.out.println("Digite o Valor que deseja depositar: ");
-		Double valorDeposito = data.teclado.nextDouble();
+		Double valorDeposito = teclado.nextDouble();
 		conta.depositar(valorDeposito);
 	}
 
