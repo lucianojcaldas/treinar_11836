@@ -12,6 +12,7 @@ public class Conta {
 
 	public Conta() {
 		saldo = 0d;
+		limiteCredito = 0d;
 	}
 	
 	public void depositar(Double valor) {

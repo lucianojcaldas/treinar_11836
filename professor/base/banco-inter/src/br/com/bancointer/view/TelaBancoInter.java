@@ -40,7 +40,7 @@ public class TelaBancoInter {
 						        + "\n Idade: " + idade 
 						        + "\n CC: "    + conta.numero 
 						        + "\n AG: "    + conta.agencia 
-						        + "\n Saldo: " + conta.saldo 
+						        + "\n Saldo: " + conta.recuperarSaldo() 
 						        + "\n------------------------\n");
 				break;
 			case 2:
