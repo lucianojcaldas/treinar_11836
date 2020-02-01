@@ -8,28 +8,61 @@ public class TelaBancoInter {
 
 	Scanner teclado = new Scanner(System.in);
 
+	public String recuperarMenu() {
+		return " Informe\n\t" 
+				+ "0 - Sair\n\t" + "1 - Criar Conta\n\t" 
+				+ "2 - Exibir Saldo\n\t" 
+				+ "3 - Depositar\n\t"
+				+ "\n=> ";
+	}
+
 	public void iniciar() {
 		Integer opcao;
 		Conta c = null;
 		do {
-			System.out.print("Informe\n\t0 - Sair\n\t1 - Criar Conta\n\t2 - Exibir Saldo\n=> ");
+			System.out.print(recuperarMenu());
 			opcao = teclado.nextInt();
+
 			switch (opcao) {
 			case 1:
-				c = new Conta();
-				System.out.print("Informe o numero da conta: ");
-				c.numero = teclado.nextInt();
-				System.out.print("Informe o numero da agencia: ");
-				c.agencia = teclado.nextInt();
-				System.out.print("Informe o saldo da conta: ");
-				c.saldo = teclado.nextDouble();
+				c = criarConta();
 				break;
 			case 2:
-				System.out.println("Saldo atual: " + c.saldo);
+				exebirSaldo(c);
+				break;
+			case 3:
+				depositar(c);
+				break;
 			default:
+
 				break;
 			}
+
 		} while (!opcao.equals(0));
 	}
 
+	private Conta criarConta() {
+		Conta conta = new Conta();
+		System.out.print("Informe o numero da conta: ");
+		conta.numero = teclado.nextInt();
+		System.out.print("Informe o numero da agencia: ");
+		conta.agencia = teclado.nextInt();
+		System.out.print("Informe o saldo da conta: ");
+		conta.saldo = teclado.nextDouble();
+		return conta;
+	}
+
+	private void exebirSaldo(Conta conta) {
+		if (conta != null) {
+			System.out.println("Saldo atual: " + conta.saldo);
+		} else {
+			System.out.println("Crie a conta primeiro");
+		}
+	}
+
+	private void depositar(Conta conta) {
+		System.out.println("Informe o valor a depositar");
+		Double valor = teclado.nextDouble();
+		conta.depositar(valor);
+	}
 }
