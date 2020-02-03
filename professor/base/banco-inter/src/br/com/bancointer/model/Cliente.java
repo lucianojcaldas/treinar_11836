@@ -2,7 +2,7 @@ package br.com.bancointer.model;
 
 public class Cliente {
 
-	public String nome;
-	public Integer idade;
-	
+	private String nome;
+	private Integer idade;
+
 }

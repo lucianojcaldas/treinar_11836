@@ -43,13 +43,13 @@ public class TelaBancoInter {
 
 		Conta conta = new Conta();
 		System.out.print("Informe o número da conta: ");
-		conta.numero = teclado.nextInt();
+		conta.setNumero(teclado.nextInt());
 		System.out.print("Informe o número da agencia: ");
-		conta.agencia = teclado.nextInt();
+		conta.setAgencia(teclado.nextInt());
 		System.out.print("Informe o Depósito inicial da conta: ");
-		conta.saldo = teclado.nextDouble();
+		conta.depositar(teclado.nextDouble());
 		System.out.println("Informe o limite de Crédito Inicial: ");
-		conta.limiteCredito = teclado.nextDouble();
+		conta.setLimiteCredito(teclado.nextDouble());
 		System.out.println("Conta criada com sucesso.");
 		System.out.println("\n<----------------->\n");
 		return conta;
