@@ -64,14 +64,14 @@ public class TelaBancoInter {
 	}
 
 	private Integer validaExistenciaConta(Integer opcao, Conta conta) {
-		if (opcao != 1 && conta == null) {
-			System.out.print("Voce não possui conta. Deseja criar uma conta agora? \n Informe S (Sim) ou N (não)");
+		if (opcao != 1 && opcao != 0 && conta == null) {
+			System.out.println("Voce não possui conta. Deseja criar uma conta agora? \n Informe S (Sim) ou N (não)");
 			String criaConta = teclado.next();
 
 			if (criaConta.equals("S") || criaConta.equals("Sim") || criaConta.equals("s") || criaConta.equals("sim")) {
 				opcao = 1;
 			} else {
-				System.out.print("Operação Cancelada.");
+				System.out.println("Operação Cancelada.");
 				opcao = 0;
 			}
 		}
