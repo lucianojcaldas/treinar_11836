@@ -84,10 +84,10 @@ public class TelaBancoInter {
 				       + "\n------------------------------------------------");
 		// Criando o Cliente
 		Cliente cliente = new Cliente();
-		System.out.print("Digite o nome do Cliente: ");
+		System.out.println("Digite o nome do Cliente: ");
 		String nomeCliente = teclado.next();
 		cliente.nome = nomeCliente;
-		System.out.print("Digite a idade: ");
+		System.out.println("Digite a idade: ");
 		int idadeCliente = teclado.nextInt();
 		cliente.idade = idadeCliente;
 		return cliente;
@@ -100,10 +100,10 @@ public class TelaBancoInter {
 		Conta conta;
 		// Criando a Conta
 		conta = new Conta();
-		System.out.print("Informe o numero da conta: ");
+		System.out.println("Informe o numero da conta: ");
 		conta.numero = teclado.nextInt();
 		conta.cliente = cliente;
-		System.out.print("Informe o numero da agencia: ");
+		System.out.println("Informe o numero da agencia: ");
 		conta.agencia = teclado.nextInt();
 		conta.recuperarSaldo();
 		return conta;
