@@ -2,10 +2,14 @@ package br.com.bancointer.view;
 
 import java.util.Scanner;
 
+import br.com.bancointer.conta.ContaCorrente;
+import br.com.bancointer.conta.ContaInvestimento;
+import br.com.bancointer.conta.ContaPoupança;
+import br.com.bancointer.conta.ContaSalario;
 import br.com.bancointer.model.core.Conta;
 
 public class TelaBancoInter {
-
+	private Integer tipoConta;
 	Scanner teclado = new Scanner(System.in);
 
 	public void iniciar() {
@@ -20,6 +24,9 @@ public class TelaBancoInter {
 				break;
 			case 1:
 				c = criarConta();
+				if (c != null) {
+					criarAtributosContaPai(c);
+				}
 				break;
 			case 2:
 				exibirSaldo(c);
@@ -39,23 +46,49 @@ public class TelaBancoInter {
 		return "Informe:\n\t0 - Sair\n\t1 - Criar Conta\n\t2 - Exibir Saldo\n\t3 - Depositar\n=> ";
 	}
 
-	private Conta criarConta() {
+	public Conta criarConta() {
 
-		Conta conta = new Conta();
-		System.out.print("Informe o número da conta: ");
-		conta.setNumero(teclado.nextInt());
-		System.out.print("Informe o número da agencia: ");
-		conta.setAgencia(teclado.nextInt());
-		System.out.print("Informe o Depósito inicial da conta: ");
-		conta.depositar(teclado.nextDouble());
-		System.out.println("Informe o limite de Crédito Inicial: ");
-		conta.setLimiteCredito(teclado.nextDouble());
-		System.out.println("Conta criada com sucesso.");
-		System.out.println("\n<----------------->\n");
-		return conta;
+		System.out.println(
+				"Informe o tipo da conta a criar:\n\t0 - Conta Corrente\n\t1 - Conta Poupança\n\t2 - Conta Salário\n\t3 - Conta Investimento\n=> ");
+		tipoConta = teclado.nextInt();
+		switch (tipoConta) {
+		case 0:
+			System.out.println("Criada uma Conta Corrente.");
+			ContaCorrente contaC = new ContaCorrente();
+			return contaC;
+
+		case 1:
+			System.out.println("Criada uma Conta Poupança.");
+			ContaPoupança contaP = new ContaPoupança();
+			return contaP;
+		case 2:
+			System.out.println("Criada uma Conta Salário.");
+			ContaSalario contaS = new ContaSalario();
+			return contaS;
+		case 3:
+			System.out.println("Criada uma Conta Investimento.");
+			ContaInvestimento contaI = new ContaInvestimento();
+			return contaI;
+		default:
+
+			System.out.println("Código Inválido.");
+			break;
+		}
+		return null;
+
 	}
 
-	private void exibirSaldo(Conta conta) {
+	public void criarAtributosContaPai(Conta conta) {
+		System.out.print("Informe o numero da conta: ");
+		Integer numeroConta = teclado.nextInt();
+		conta.setNumero(numeroConta);
+		System.out.print("Informe o numero da agencia: ");
+		conta.setAgencia(numeroConta);
+		System.out.print("Informe o saldo da conta: ");
+		conta.depositar(teclado.nextDouble());
+	}
+
+	public void exibirSaldo(Conta conta) {
 		if (conta == null) {
 			System.out.println("Por favor crie a conta antes.");
 		} else {
@@ -64,7 +97,7 @@ public class TelaBancoInter {
 		System.out.println("\n<----------------->\n");
 	}
 
-	private void fazerDeposito(Conta conta) {
+	public void fazerDeposito(Conta conta) {
 		if (conta == null) {
 			System.out.println("Por favor crie a conta antes.");
 		} else {

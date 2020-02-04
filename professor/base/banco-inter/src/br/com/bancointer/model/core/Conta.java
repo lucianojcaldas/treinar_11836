@@ -1,18 +1,17 @@
 package br.com.bancointer.model.core;
 
 import br.com.bancointer.model.Cliente;
-
+import java.util.Scanner;
 public class Conta {
 
 	private Double saldo;
-	private Double limiteCredito;
 	private Integer numero;
 	private Integer agencia;
 	private Cliente cliente;
-
+	protected Scanner teclado = new Scanner(System.in);
 	public Conta() {
 		saldo = 0d;
-		limiteCredito = 0d;
+
 	}
 
 	public void depositar(Double valorDeposito) {
@@ -21,7 +20,7 @@ public class Conta {
 	}
 
 	public double recuperarSaldo() {
-		return saldo + limiteCredito;
+		return saldo;
 	}
 
 	public Double getSaldo() {
@@ -30,14 +29,6 @@ public class Conta {
 
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
-	}
-
-	public Double getLimiteCredito() {
-		return limiteCredito;
-	}
-
-	public void setLimiteCredito(Double limiteCredito) {
-		this.limiteCredito = limiteCredito;
 	}
 
 	public Integer getNumero() {
