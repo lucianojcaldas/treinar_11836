@@ -24,6 +24,6 @@ public class ContaCorrente extends Conta {
 	}
 
 	public Double recuperaSaldo() {
-		return getSaldo() + limiteCredito;
+		return this.getSaldo() + limiteCredito;
 	}
 }
