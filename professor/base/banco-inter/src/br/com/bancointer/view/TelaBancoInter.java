@@ -2,6 +2,9 @@ package br.com.bancointer.view;
 
 import java.util.Scanner;
 
+import br.com.bancointer.model.conta.ContaCorrente;
+import br.com.bancointer.model.conta.ContaInvestimento;
+import br.com.bancointer.model.conta.ContaPoupanca;
 import br.com.bancointer.model.core.Conta;
 
 public class TelaBancoInter {
@@ -40,16 +43,81 @@ public class TelaBancoInter {
 		} while (!opcao.equals(0));
 	}
 
-	private Conta criarConta() {
-		Conta batata = new Conta();
+	public String recuperarMenuCriarConta() {
+		return "Informe\n\t"
+				+ "0 - Conta Corrente\n\t"
+				+ "1 - Conta Poupança\n\t"
+				+ "2 - Conta Salário\n\t"
+				+ "3 - Conta Investimento\n\t"
+				+ "\n=> ";
+	}
+	
+	private void criarConta(Conta conta) {
 		System.out.print("Informe o numero da conta: ");
 		Integer numeroConta = teclado.nextInt();
-		batata.setNumero(numeroConta);
+		conta.setNumero(numeroConta);
 		System.out.print("Informe o numero da agencia: ");
-		batata.setAgencia(numeroConta);
+		conta.setAgencia(teclado.nextInt());
 		System.out.print("Informe o saldo da conta: ");
-		batata.depositar(teclado.nextDouble());
-		return batata;
+		conta.depositar(teclado.nextDouble());
+	}
+	
+	private Conta criarConta() {
+		System.out.println(recuperarMenuCriarConta());
+		Integer opcao = teclado.nextInt();
+		Conta c = null;
+		switch (opcao) {
+		case 1:
+			c = criarContaCorrente();
+			break;
+		case 2:
+			c = criarContaPoupanca();
+			break;
+		case 3:
+			c = criarContaSalario();
+			break;
+		case 4:
+			c = criarContaInvestimento();
+			break;
+		default:
+			break;
+		}
+		return c;
+		
+	}
+
+	private Conta criarContaCorrente() {
+		ContaCorrente c = new ContaCorrente();
+		criarConta(c);
+		System.out.print("Informe a taxa de manutencao: ");
+		c.setTaxaManutencao(teclado.nextDouble());
+		System.out.print("Informe o limite de Crédito: ");
+		c.setLimiteCredito(teclado.nextDouble());
+		return c;
+	}
+	
+	private Conta criarContaInvestimento() {
+		ContaInvestimento c = new ContaInvestimento();
+		criarConta(c);
+		System.out.print("Informe a taxa de manutencao: ");
+		c.setTaxaManutencao(teclado.nextDouble());
+		System.out.print("Informe o limite de Crédito: ");
+		c.setTaxaRendimento(teclado.nextDouble());
+		return c;
+	}
+	
+	private Conta criarContaPoupanca() {
+		ContaPoupanca c = new ContaPoupanca();
+		criarConta(c);
+		System.out.print("Informe a taxa de rendimento: ");
+		c.setTaxaRendimento(teclado.nextDouble());
+		return c;
+	}
+	
+	private Conta criarContaSalario() {
+		ContaCorrente c = new ContaCorrente();
+		criarConta(c);
+		return c;
 	}
 
 	private void exibirSaldo(Conta conta) {

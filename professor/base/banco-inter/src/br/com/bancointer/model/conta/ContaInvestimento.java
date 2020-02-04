@@ -7,6 +7,13 @@ public class ContaInvestimento extends Conta {
 	private Double taxaManutencao;
 	private Double taxaRendimento;
 
+	@Override
+	public void sacar(Double valor) {
+		if (this.saldo >= valor) {
+			this.saldo -= valor;
+		}
+	}
+	
 	public Double getTaxaManutencao() {
 		return taxaManutencao;
 	}

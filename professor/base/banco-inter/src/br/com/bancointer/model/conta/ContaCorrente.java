@@ -6,6 +6,20 @@ public class ContaCorrente extends Conta {
 
 	private Double limiteCredito;
 	private Double taxaManutencao;
+	
+	@Override
+	public void sacar(Double valor) {
+		if ((saldo + limiteCredito) >= (valor + 1)) {
+			this.saldo -= (valor + 1);
+		}
+	}
+	
+	@Override
+	public Double recuperarSaldo() {
+		System.out.println(this.saldo);
+		Double saldoOrigem = super.recuperarSaldo();
+		return saldoOrigem + limiteCredito;
+	}
 
 	public Double getLimiteCredito() {
 		return limiteCredito;

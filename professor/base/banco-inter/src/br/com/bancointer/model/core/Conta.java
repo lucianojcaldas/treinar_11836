@@ -2,9 +2,9 @@ package br.com.bancointer.model.core;
 
 import br.com.bancointer.model.Cliente;
 
-public class Conta {
+public abstract class Conta {
 
-	private Double saldo;
+	protected Double saldo;
 	private Integer numero;
 	private Integer agencia;
 	private Cliente cliente;
@@ -17,12 +17,15 @@ public class Conta {
 	public Conta() {
 		saldo = 0d;
 	}
+	
+	public abstract void sacar(Double valor) throws Exception ;
 
 	public void depositar(Double valor) {
 		saldo += valor;
 	}
 
 	public Double recuperarSaldo() {
+		System.out.println("log de acesso - alguem recuperou saldo");
 		return saldo;
 	}
 
