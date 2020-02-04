@@ -3,6 +3,7 @@ package br.com.bancointer.view;
 import java.util.Scanner;
 
 import br.com.bancointer.model.Cliente;
+import br.com.bancointer.model.contas.ContaCorrente;
 import br.com.bancointer.model.core.Conta;
 
 public class TelaBancoInter {
@@ -79,41 +80,127 @@ public class TelaBancoInter {
 	}
 
 	private Cliente criarCliente() {
-		System.out.print("------------------------------------------------" 
+		System.out.println("------------------------------------------------" 
 	                 + "\n              Cadastrando Cliente"
 				     + "\n------------------------------------------------");
 		// Criando o Cliente
 		Cliente cliente = new Cliente();
-		System.out.println("Digite o nome do Cliente: ");
+		System.out.print("Digite o nome do Cliente: ");
 		String nomeCliente = teclado.next();
 		cliente.nome = nomeCliente;
-		System.out.println("Digite a idade: ");
+		System.out.print("Digite a idade: ");
 		int idadeCliente = teclado.nextInt();
 		cliente.idade = idadeCliente;
 		return cliente;
 	}
 
 	private Conta criarConta(Cliente cliente) {
-		System.out.println("------------------------------------------------" 
-	                   + "\n                 Crindo Conta"
-				       + "\n------------------------------------------------");
-		Conta conta;
-		// Criando a Conta
-		conta = new Conta();
-		System.out.println("Informe o numero da conta: ");
-		conta.setNumero(teclado.nextInt());
-		conta.setCliente(cliente);
-		System.out.println("Informe o numero da agencia: ");
-		conta.setAgencia(teclado.nextInt());
-		System.out.println("Deseja inserir um saldo a conta? (S) Sim - (N) Não");
-		if (teclado.next().equals("S") || teclado.next().equals("Sim") || teclado.next().equals("SIM")
-				|| teclado.next().equals("sim") || teclado.next().equals("sIM")) {
-			conta.depositar(teclado.nextDouble());
-		} else {
-			conta.depositar(0d);
-		}
-
+		String tipoConta;
+		Conta conta = null;
+		System.out.print("------------------------------------------------" 
+                         + "\nQual o Tipo de Conta que seja criar: "
+				         + "\n\t (C) - Conta Corrente"
+				         + "\n\t (I) - Conta Investimento"
+				         + "\n\t (P) - Conta Poupança"
+				         + "\n\t (S) - Salario"
+				         + "\n------------------------------------------------"
+				         + "\n=>");
+		tipoConta = teclado.next();
+		
+		switch (tipoConta) {
+		case "C":
+			System.out.println("------------------------------------------------" 
+	                       + "\n             Crindo Conta Corrente"
+				           + "\n------------------------------------------------");
+			Conta contaCorrente;
+			// Criando a Conta
+			contaCorrente = new ContaCorrente();
+			System.out.print("Informe o numero da conta: ");
+			contaCorrente.setNumero(teclado.nextInt());
+			contaCorrente.setCliente(cliente);
+			System.out.print("Informe o numero da agencia: ");
+			contaCorrente.setAgencia(teclado.nextInt());
+			System.out.println("Deseja inserir um saldo a conta? (S) Sim - (N) Não");
+			if (teclado.next().equals("S") || teclado.next().equals("Sim") || teclado.next().equals("SIM")
+					|| teclado.next().equals("sim") || teclado.next().equals("sIM")) {
+				System.out.println("Digite o valor que deseja depositar: ");
+				contaCorrente.depositar(teclado.nextDouble());
+			} else {
+				contaCorrente.depositar(0d);
+			}
+			conta = contaCorrente;
+			break;
+		case "I":
+			System.out.println("------------------------------------------------" 
+                    + "\n             Crindo Conta Investimento"
+			           + "\n------------------------------------------------");
+			Conta contaInvestimento;
+			// Criando a Conta
+			contaInvestimento = new ContaCorrente();
+			System.out.print("Informe o numero da conta: ");
+			contaInvestimento.setNumero(teclado.nextInt());
+			contaInvestimento.setCliente(cliente);
+			System.out.print("Informe o numero da agencia: ");
+			contaInvestimento.setAgencia(teclado.nextInt());
+			System.out.println("Deseja inserir um saldo a conta? (S) Sim - (N) Não");
+			if (teclado.next().equals("S") || teclado.next().equals("Sim") || teclado.next().equals("SIM")
+					|| teclado.next().equals("sim") || teclado.next().equals("sIM")) {
+				System.out.println("Digite o valor que deseja depositar: ");
+				contaInvestimento.depositar(teclado.nextDouble());
+			} else {
+				contaInvestimento.depositar(0d);
+			}
+			conta = contaInvestimento;
+			break;
+		case "P":
+			System.out.println("------------------------------------------------" 
+                    + "\n             Crindo Conta Poupança"
+			           + "\n------------------------------------------------");
+			Conta contaPoupanca;
+			// Criando a Conta
+			contaPoupanca = new ContaCorrente();
+			System.out.print("Informe o numero da conta: ");
+			contaPoupanca.setNumero(teclado.nextInt());
+			contaPoupanca.setCliente(cliente);
+			System.out.print("Informe o numero da agencia: ");
+			contaPoupanca.setAgencia(teclado.nextInt());
+			System.out.println("Deseja inserir um saldo a conta? (S) Sim - (N) Não");
+			if (teclado.next().equals("S") || teclado.next().equals("Sim") || teclado.next().equals("SIM")
+					|| teclado.next().equals("sim") || teclado.next().equals("sIM")) {
+				System.out.println("Digite o valor que deseja depositar: ");
+				contaPoupanca.depositar(teclado.nextDouble());
+			} else {
+				contaPoupanca.depositar(0d);
+			}
+			conta = contaPoupanca;
+			break;
+		case "S":
+			System.out.println("------------------------------------------------" 
+                    + "\n             Crindo Conta Salario"
+			           + "\n------------------------------------------------");
+			Conta contaSalario;
+			// Criando a Conta
+			contaSalario = new ContaCorrente();
+			System.out.print("Informe o numero da conta: ");
+			contaSalario.setNumero(teclado.nextInt());
+			contaSalario.setCliente(cliente);
+			System.out.print("Informe o numero da agencia: ");
+			contaSalario.setAgencia(teclado.nextInt());
+			System.out.println("Deseja inserir um saldo a conta? (S) Sim - (N) Não");
+			if (teclado.next().equals("S") || teclado.next().equals("Sim") || teclado.next().equals("SIM")
+					|| teclado.next().equals("sim") || teclado.next().equals("sIM")) {
+				System.out.println("Digite o valor que deseja depositar: ");
+				contaSalario.depositar(teclado.nextDouble());
+			} else {
+				contaSalario.depositar(0d);
+			}
+			conta = contaSalario;
+			break;
+		default:
+			break;
+		}		
 		return conta;
+		
 	}
 
 	private void exibirSaldo(Conta conta) {
