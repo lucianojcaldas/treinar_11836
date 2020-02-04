@@ -34,12 +34,12 @@ public class TelaBancoInter {
 				conta = criarConta(cliente);
 				
 				//imprime informações da conta criada
-				String nome = conta.cliente.nome;
-				int idade = conta.cliente.idade;
+				String nome = conta.getCliente().nome;
+				int idade = conta.getCliente().idade;
 				System.out.print("Cliente: "   + nome 
 						        + "\n Idade: " + idade 
-						        + "\n CC: "    + conta.numero 
-						        + "\n AG: "    + conta.agencia 
+						        + "\n CC: "    + conta.getNumero() 
+						        + "\n AG: "    + conta.getAgencia() 
 						        + "\n Saldo: " + conta.recuperarSaldo() 
 						        + "\n------------------------\n");
 				break;
@@ -80,8 +80,8 @@ public class TelaBancoInter {
 
 	private Cliente criarCliente() {
 		System.out.print("------------------------------------------------" 
-	                   + "\n              Cadastrando Cliente"
-				       + "\n------------------------------------------------");
+	                 + "\n              Cadastrando Cliente"
+				     + "\n------------------------------------------------");
 		// Criando o Cliente
 		Cliente cliente = new Cliente();
 		System.out.println("Digite o nome do Cliente: ");
@@ -101,11 +101,18 @@ public class TelaBancoInter {
 		// Criando a Conta
 		conta = new Conta();
 		System.out.println("Informe o numero da conta: ");
-		conta.numero = teclado.nextInt();
-		conta.cliente = cliente;
+		conta.setNumero(teclado.nextInt());
+		conta.setCliente(cliente);
 		System.out.println("Informe o numero da agencia: ");
-		conta.agencia = teclado.nextInt();
-		conta.recuperarSaldo();
+		conta.setAgencia(teclado.nextInt());
+		System.out.println("Deseja inserir um saldo a conta? (S) Sim - (N) Não");
+		if (teclado.next().equals("S") || teclado.next().equals("Sim") || teclado.next().equals("SIM")
+				|| teclado.next().equals("sim") || teclado.next().equals("sIM")) {
+			conta.depositar(teclado.nextDouble());
+		} else {
+			conta.depositar(0d);
+		}
+
 		return conta;
 	}
 
