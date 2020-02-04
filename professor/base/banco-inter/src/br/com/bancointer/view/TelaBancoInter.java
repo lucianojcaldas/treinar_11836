@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 import br.com.bancointer.model.Cliente;
 import br.com.bancointer.model.contas.ContaCorrente;
+import br.com.bancointer.model.contas.ContaInvestimento;
+import br.com.bancointer.model.contas.ContaPoupanca;
+import br.com.bancointer.model.contas.ContaSalario;
 import br.com.bancointer.model.core.Conta;
 
 public class TelaBancoInter {
@@ -32,7 +35,8 @@ public class TelaBancoInter {
 				break;
 			case 1:
 				Cliente cliente = criarCliente();
-				conta = criarConta(cliente);
+				conta = tipoConta(cliente);
+				//conta = criarConta(cliente);
 				
 				//imprime informações da conta criada
 				String nome = conta.getCliente().nome;
@@ -93,33 +97,56 @@ public class TelaBancoInter {
 		cliente.idade = idadeCliente;
 		return cliente;
 	}
-
-	private Conta criarConta(Cliente cliente) {
-		String tipoConta;
-		Conta conta = null;
+	
+	private Conta tipoConta(Cliente cliente) {
+		int tipoConta;
 		System.out.print("------------------------------------------------" 
                          + "\nQual o Tipo de Conta que seja criar: "
-				         + "\n\t (C) - Conta Corrente"
-				         + "\n\t (I) - Conta Investimento"
-				         + "\n\t (P) - Conta Poupança"
-				         + "\n\t (S) - Salario"
+				         + "\n\t 1 - Conta Corrente"
+				         + "\n\t 2 - Conta Investimento"
+				         + "\n\t 3 - Conta Poupança"
+				         + "\n\t 4 - Salario"
 				         + "\n------------------------------------------------"
-				         + "\n=>");
-		tipoConta = teclado.next();
+				         + "\n=> ");
+		tipoConta = teclado.nextInt();
 		
 		switch (tipoConta) {
-		case "C":
-			System.out.println("------------------------------------------------" 
-	                       + "\n             Crindo Conta Corrente"
-				           + "\n------------------------------------------------");
+		case 1:
+			criarConta(cliente, tipoConta);
+			break;
+		case 2:
+			criarConta(cliente, tipoConta);
+			break;
+		case 3:
+			criarConta(cliente, tipoConta);
+			break;
+		case 4:
+			criarConta(cliente, tipoConta);
+			break;
+		default:
+			System.out.println("Informar um tipo de conta valido");
+			break;
+		}
+		return null;
+	}
+
+	private Conta criarConta(Cliente cliente, Integer tipoConta) {
+		Conta conta = null;
+		if (tipoConta == 1) {
+			System.out.println("------------------------------------------------"
+					       + "\n             Crindo Conta Corrente" 
+					       + "\n------------------------------------------------");
 			Conta contaCorrente;
 			// Criando a Conta
 			contaCorrente = new ContaCorrente();
+			
 			System.out.print("Informe o numero da conta: ");
 			contaCorrente.setNumero(teclado.nextInt());
 			contaCorrente.setCliente(cliente);
+			
 			System.out.print("Informe o numero da agencia: ");
 			contaCorrente.setAgencia(teclado.nextInt());
+			
 			System.out.println("Deseja inserir um saldo a conta? (S) Sim - (N) Não");
 			if (teclado.next().equals("S") || teclado.next().equals("Sim") || teclado.next().equals("SIM")
 					|| teclado.next().equals("sim") || teclado.next().equals("sIM")) {
@@ -128,20 +155,22 @@ public class TelaBancoInter {
 			} else {
 				contaCorrente.depositar(0d);
 			}
-			conta = contaCorrente;
-			break;
-		case "I":
+		conta = contaCorrente;
+		} else if (tipoConta == 2) {
 			System.out.println("------------------------------------------------" 
-                    + "\n             Crindo Conta Investimento"
-			           + "\n------------------------------------------------");
+			               + "\n             Crindo Conta Investimento"
+						+ "\n------------------------------------------------");
 			Conta contaInvestimento;
 			// Criando a Conta
-			contaInvestimento = new ContaCorrente();
+			contaInvestimento = new ContaInvestimento();
+			
 			System.out.print("Informe o numero da conta: ");
 			contaInvestimento.setNumero(teclado.nextInt());
 			contaInvestimento.setCliente(cliente);
+			
 			System.out.print("Informe o numero da agencia: ");
 			contaInvestimento.setAgencia(teclado.nextInt());
+			
 			System.out.println("Deseja inserir um saldo a conta? (S) Sim - (N) Não");
 			if (teclado.next().equals("S") || teclado.next().equals("Sim") || teclado.next().equals("SIM")
 					|| teclado.next().equals("sim") || teclado.next().equals("sIM")) {
@@ -150,20 +179,22 @@ public class TelaBancoInter {
 			} else {
 				contaInvestimento.depositar(0d);
 			}
-			conta = contaInvestimento;
-			break;
-		case "P":
-			System.out.println("------------------------------------------------" 
-                    + "\n             Crindo Conta Poupança"
-			           + "\n------------------------------------------------");
+		conta = contaInvestimento;
+		} else if (tipoConta == 3) {
+			System.out.println("------------------------------------------------"
+					       + "\n             Crindo Conta Poupança" 
+					       + "\n------------------------------------------------");
 			Conta contaPoupanca;
 			// Criando a Conta
-			contaPoupanca = new ContaCorrente();
+			contaPoupanca = new ContaPoupanca();
+			
 			System.out.print("Informe o numero da conta: ");
 			contaPoupanca.setNumero(teclado.nextInt());
 			contaPoupanca.setCliente(cliente);
+			
 			System.out.print("Informe o numero da agencia: ");
 			contaPoupanca.setAgencia(teclado.nextInt());
+			
 			System.out.println("Deseja inserir um saldo a conta? (S) Sim - (N) Não");
 			if (teclado.next().equals("S") || teclado.next().equals("Sim") || teclado.next().equals("SIM")
 					|| teclado.next().equals("sim") || teclado.next().equals("sIM")) {
@@ -172,20 +203,22 @@ public class TelaBancoInter {
 			} else {
 				contaPoupanca.depositar(0d);
 			}
-			conta = contaPoupanca;
-			break;
-		case "S":
-			System.out.println("------------------------------------------------" 
-                    + "\n             Crindo Conta Salario"
-			           + "\n------------------------------------------------");
+		conta = contaPoupanca;
+		} else if (tipoConta == 4) {
+			System.out.println("------------------------------------------------"
+					       + "\n             Crindo Conta Salario" 
+					       + "\n------------------------------------------------");
 			Conta contaSalario;
 			// Criando a Conta
-			contaSalario = new ContaCorrente();
+			contaSalario = new ContaSalario();
+			
 			System.out.print("Informe o numero da conta: ");
 			contaSalario.setNumero(teclado.nextInt());
 			contaSalario.setCliente(cliente);
+			
 			System.out.print("Informe o numero da agencia: ");
 			contaSalario.setAgencia(teclado.nextInt());
+			
 			System.out.println("Deseja inserir um saldo a conta? (S) Sim - (N) Não");
 			if (teclado.next().equals("S") || teclado.next().equals("Sim") || teclado.next().equals("SIM")
 					|| teclado.next().equals("sim") || teclado.next().equals("sIM")) {
@@ -194,13 +227,9 @@ public class TelaBancoInter {
 			} else {
 				contaSalario.depositar(0d);
 			}
-			conta = contaSalario;
-			break;
-		default:
-			break;
-		}		
+	    conta = contaSalario;
+		}
 		return conta;
-		
 	}
 
 	private void exibirSaldo(Conta conta) {
