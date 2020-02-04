@@ -44,7 +44,7 @@ public class TelaBancoInter {
 						        + "\n Idade: " + idade 
 						        + "\n CC: "    + conta.getNumero() 
 						        + "\n AG: "    + conta.getAgencia() 
-						        + "\n Saldo: " + conta.recuperarSaldo() 
+						        + "\n Saldo: " + conta.getSaldo() 
 						        + "\n------------------------\n");
 				break;
 			case 2:
@@ -118,6 +118,7 @@ public class TelaBancoInter {
 			Conta contaCorrente;
 			// Criando a Conta
 			contaCorrente = new ContaCorrente();
+			contaCorrente.setTipo("1");
 
 			System.out.print("Informe o numero da conta: ");
 			contaCorrente.setNumero(teclado.nextInt());
@@ -149,7 +150,8 @@ public class TelaBancoInter {
 			Conta contaInvestimento;
 			// Criando a Conta
 			contaInvestimento = new ContaInvestimento();
-
+			contaInvestimento.setTipo("2");
+			
 			System.out.print("Informe o numero da conta: ");
 			contaInvestimento.setNumero(teclado.nextInt());
 			contaInvestimento.setCliente(cliente);
@@ -180,6 +182,7 @@ public class TelaBancoInter {
 			Conta contaPoupanca;
 			// Criando a Conta
 			contaPoupanca = new ContaPoupanca();
+			contaPoupanca.setTipo("3");
 
 			System.out.print("Informe o numero da conta: ");
 			contaPoupanca.setNumero(teclado.nextInt());
@@ -208,6 +211,7 @@ public class TelaBancoInter {
 			Conta contaSalario;
 			// Criando a Conta
 			contaSalario = new ContaSalario();
+			contaSalario.setTipo("4");
 
 			System.out.print("Informe o numero da conta: ");
 			contaSalario.setNumero(teclado.nextInt());
@@ -231,7 +235,8 @@ public class TelaBancoInter {
 		if (conta == null) {
 			System.out.println("Favor criar a conta primeiro. \n------------------------\n");
 		} else {
-			System.out.println("O Saldo da conta é: " + conta.recuperarSaldo() + "\n------------------------\n");
+				System.out.println("O Saldo da conta é: " + conta.getSaldo() + "\n------------------------\n");
+
 		}
 	}
 

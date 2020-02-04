@@ -23,4 +23,7 @@ public class ContaCorrente extends Conta {
 		this.taxaManutencao = taxaManutencao;
 	}
 
+	public Double recuperaSaldo() {
+		return getSaldo() + limiteCredito;
+	}
 }

@@ -8,6 +8,7 @@ public class Conta {
 	private Integer numero;
 	private Integer agencia;
 	private Cliente cliente;
+	private String tipo;
 
 	public Conta(Double saldo) {
 		this();
@@ -28,10 +29,6 @@ public class Conta {
 
 	public void transferir(Double valor, Integer contaDestino) {
 		saldo -= valor;
-	}
-
-	public Double recuperarSaldo() {
-		return saldo;
 	}
 
 	public Double getSaldo() {
@@ -65,5 +62,14 @@ public class Conta {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 
 }
