@@ -43,9 +43,10 @@ public class TelaBancoInter {
 	private Conta criarConta() {
 		Conta batata = new Conta();
 		System.out.print("Informe o numero da conta: ");
-		batata.numero = teclado.nextInt();
+		Integer numeroConta = teclado.nextInt();
+		batata.setNumero(numeroConta);
 		System.out.print("Informe o numero da agencia: ");
-		batata.agencia = teclado.nextInt();
+		batata.setAgencia(numeroConta);
 		System.out.print("Informe o saldo da conta: ");
 		batata.depositar(teclado.nextDouble());
 		return batata;
@@ -66,3 +67,4 @@ public class TelaBancoInter {
 	}
 
 }
+
