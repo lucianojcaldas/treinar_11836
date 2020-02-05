@@ -8,6 +8,8 @@ import br.com.bancointer.model.contas.ContaInvestimento;
 import br.com.bancointer.model.contas.ContaPoupanca;
 import br.com.bancointer.model.contas.ContaSalario;
 import br.com.bancointer.model.core.Conta;
+import br.com.bancointer.model.core.IContaPagavel;
+import br.com.bancointer.model.core.IContaRentavel;
 
 public class TelaBancoInter {
 
@@ -20,6 +22,10 @@ public class TelaBancoInter {
 	                + "\n\t3 - Realizar Deposito"
 				    + "\n\t4 - Realizar Saque" 
 	                + "\n\t5 - Realizar Transferencia" 
+	                + "\n\t6 - Exibir Limite de Crédito"
+	                + "\n\t7 - Obter Rendimento"
+	                + "\n\t8 - Realizar Pagamento"
+	                + "\n\t9 - Cadastrar Taxa de Rendimento"
 				    + "\n=> ";
 	}
 
@@ -59,12 +65,56 @@ public class TelaBancoInter {
 			case 5:
 				transferir(conta);
 				break;
+			case 6:
+				exibirLimite(conta);
+				break;	
+			case 7:
+				obterRendimento(conta);
+				break;
+			case 8:
+				realizarPagamento(conta);
+				break;	
+			case 9:
+				cadastrarTaxaRendimento(conta);
+				break;	
 			default:
 				System.out.print("Favor digitar um numero valido"
 						       + "\n-----------------------------\n");
 				break;
 			}
 		} while (!opcao.equals(0));
+	}
+
+	
+	private void cadastrarTaxaRendimento(Conta conta) {
+		System.out.println("Informe a Taxa de Rendimento: ");
+		ContaPoupanca.setTaxaRendimento(teclado.nextDouble());
+		System.out.println("Taxa de rendimento cadastrada com sucesso");
+	}
+
+	private void realizarPagamento(Conta conta) {
+		if(conta instanceof IContaPagavel) {
+			((IContaPagavel) conta).pagar();
+		} else {
+			System.out.println("Deve ser uma conta do tipo de Pagamento!");
+		}
+	}
+
+	private void obterRendimento(Conta conta) {
+		if(conta instanceof IContaRentavel) {
+			((IContaRentavel) conta).render();		
+		} else {
+			System.out.println("Deve ser uma conta do tipo de Rendimento!");
+		}
+	}
+
+	private void exibirLimite(Conta conta) {
+		if(conta instanceof ContaCorrente) {
+			System.out.println("Limite de Crédito: " + ((ContaCorrente) conta).getLimiteCredito());			
+		} else {
+			System.out.println("Este tipo de conta não possui limite de crédito, faça um emprestimo!");
+		}
+		
 	}
 
 	private Integer validaExistenciaConta(Integer opcao, Conta conta) {
@@ -191,9 +241,6 @@ public class TelaBancoInter {
 			System.out.print("Informe o numero da agencia: ");
 			contaPoupanca.setAgencia(teclado.nextInt());
 
-			System.out.println("Informe a Taxa de Rendimento: ");
-			((ContaPoupanca) contaPoupanca).setTaxaRendimento(teclado.nextDouble());
-
 			System.out.println("Deseja inserir um saldo a conta? (S) Sim - (N) Não");
 			if (teclado.next().equals("S") || teclado.next().equals("Sim") || teclado.next().equals("SIM")
 					|| teclado.next().equals("sim") || teclado.next().equals("sIM")) {
@@ -252,12 +299,14 @@ public class TelaBancoInter {
 		System.out.println("Digite o Valor que deseja sacar: ");
 		Double valorSaque = teclado.nextDouble();
 		conta.saque(valorSaque);
+		System.out.println("Saque realizado com sucesso!");
 	}
 
 	private void depositar(Conta conta) {
 		System.out.println("Digite o Valor que deseja depositar: ");
 		Double valorDeposito = teclado.nextDouble();
 		conta.depositar(valorDeposito);
+		System.out.println("Deposito realizado com sucesso!");
 	}
 
 }

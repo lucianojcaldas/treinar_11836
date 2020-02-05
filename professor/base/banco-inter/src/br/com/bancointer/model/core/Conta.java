@@ -2,9 +2,9 @@ package br.com.bancointer.model.core;
 
 import br.com.bancointer.model.Cliente;
 
-public class Conta {
+public abstract class Conta {
 
-	private Double saldo;
+	protected Double saldo;
 	private Integer numero;
 	private Integer agencia;
 	private Cliente cliente;
@@ -23,9 +23,7 @@ public class Conta {
 		saldo += valor;
 	}
 
-	public void saque(Double valor) {
-		saldo -= valor;
-	}
+	public abstract void saque(Double Valor);
 
 	public void transferir(Double valor, Integer contaDestino) {
 		saldo -= valor;
