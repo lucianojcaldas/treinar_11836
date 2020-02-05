@@ -6,6 +6,8 @@ import br.com.bancointer.model.conta.ContaCorrente;
 import br.com.bancointer.model.conta.ContaInvestimento;
 import br.com.bancointer.model.conta.ContaPoupanca;
 import br.com.bancointer.model.core.Conta;
+import br.com.bancointer.model.core.IContaPagavel;
+import br.com.bancointer.model.core.IContaRentavel;
 
 public class TelaBancoInter {
 
@@ -17,6 +19,11 @@ public class TelaBancoInter {
 				+ "1 - Criar Conta\n\t"
 				+ "2 - Exibir Saldo\n\t"
 				+ "3 - Depositar\n\t"
+				+ "4 - Sacar\n\t"
+				+ "5 - Exibir Limite De Crédito\n\t"
+				+ "6 - Obter Rendimento\n\t"
+				+ "7 - Realizar Pagamento\n\t"
+				+ "8 - Cadastrar taxa de rendimento\n\t"
 				+ "\n=> ";
 	}
 
@@ -35,6 +42,20 @@ public class TelaBancoInter {
 				break;
 			case 3:
 				depositar(c);
+			case 4:
+				sacar(c);
+				break;
+			case 5:
+				exibirLimiteCredito(c);
+				break;
+			case 6:
+				obterRendimento(c);
+				break;
+			case 7:
+				realizarPagamento(c);
+				break;
+			case 8:
+				cadastrarTaxaRendimento(c);
 				break;
 			default:
 				break;
@@ -43,12 +64,45 @@ public class TelaBancoInter {
 		} while (!opcao.equals(0));
 	}
 
+	private void cadastrarTaxaRendimento(Conta c) {
+		System.out.print("Informe a taxa de rendimento: ");
+		ContaPoupanca.setTaxaRendimento(teclado.nextDouble());
+		System.out.println("Taxa cadastrada com sucesso!");
+	}
+
+	private void realizarPagamento(Conta c) {
+		if (c instanceof IContaPagavel) {
+			((IContaPagavel)c).pagar();
+		}
+	}
+
+	private void obterRendimento(Conta c) {
+		if (c instanceof IContaRentavel) {
+			((IContaRentavel)c).render();
+		}
+	}
+
+	private void exibirLimiteCredito(Conta c) {
+		if (c instanceof ContaCorrente) {
+			System.out.println("Limite de crédito: " + ((ContaCorrente)c).getLimiteCredito());
+		} else {
+			System.out.println("Este tipo de conta nao possui limite de crédito, faça um empréstimo!");
+		}
+	}
+
+	private void sacar(Conta c) {
+		System.out.print("Informe o valor a ser sacado: ");
+		Double valor = teclado.nextDouble();
+		c.sacar(valor);
+		System.out.println("Saque efetuado com sucesso!");
+	}
+
 	public String recuperarMenuCriarConta() {
 		return "Informe\n\t"
-				+ "0 - Conta Corrente\n\t"
-				+ "1 - Conta Poupança\n\t"
-				+ "2 - Conta Salário\n\t"
-				+ "3 - Conta Investimento\n\t"
+				+ "1 - Conta Corrente\n\t"
+				+ "2 - Conta Poupança\n\t"
+				+ "3 - Conta Salário\n\t"
+				+ "4 - Conta Investimento\n\t"
 				+ "\n=> ";
 	}
 	
@@ -63,7 +117,7 @@ public class TelaBancoInter {
 	}
 	
 	private Conta criarConta() {
-		System.out.println(recuperarMenuCriarConta());
+		System.out.print(recuperarMenuCriarConta());
 		Integer opcao = teclado.nextInt();
 		Conta c = null;
 		switch (opcao) {
@@ -101,7 +155,7 @@ public class TelaBancoInter {
 		criarConta(c);
 		System.out.print("Informe a taxa de manutencao: ");
 		c.setTaxaManutencao(teclado.nextDouble());
-		System.out.print("Informe o limite de Crédito: ");
+		System.out.print("Informe a taxa de rendimento: ");
 		c.setTaxaRendimento(teclado.nextDouble());
 		return c;
 	}
@@ -109,8 +163,6 @@ public class TelaBancoInter {
 	private Conta criarContaPoupanca() {
 		ContaPoupanca c = new ContaPoupanca();
 		criarConta(c);
-		System.out.print("Informe a taxa de rendimento: ");
-		c.setTaxaRendimento(teclado.nextDouble());
 		return c;
 	}
 	

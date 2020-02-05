@@ -1,8 +1,9 @@
 package br.com.bancointer.model.conta;
 
 import br.com.bancointer.model.core.Conta;
+import br.com.bancointer.model.core.IContaPagavel;
 
-public class ContaCorrente extends Conta {
+public class ContaCorrente extends Conta implements IContaPagavel {
 
 	private Double limiteCredito;
 	private Double taxaManutencao;
@@ -37,4 +38,9 @@ public class ContaCorrente extends Conta {
 		this.taxaManutencao = taxaManutencao;
 	}
 
+	@Override
+	public void pagar() {
+		sacar(taxaManutencao);
+	}
+	
 }
